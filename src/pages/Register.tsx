@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { authAPI } from '../services/api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faEnvelope, faLock, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Register: React.FC = () => {
@@ -31,63 +33,94 @@ const Register: React.FC = () => {
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card shadow-sm">
-            <div className="card-body">
-              <h2 className="text-center mb-4">Kayıt Ol</h2>
+        <div className="col-md-5">
+          <div className="card shadow-sm border-0 fade-in">
+            <div className="card-body p-5">
+              <div className="text-center mb-5">
+                <h2 className="fw-bold text-primary mb-2">Finans Takip</h2>
+                <p className="text-muted">Yeni hesap oluşturun</p>
+              </div>
               {error && (
-                <div className="alert alert-danger" role="alert">
+                <div className="alert alert-danger slide-up" role="alert">
                   {error}
                 </div>
               )}
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">Ad Soyad</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-lg"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                  />
+              <form onSubmit={handleSubmit} className="slide-up">
+                <div className="mb-4">
+                  <label htmlFor="name" className="form-label text-muted small text-uppercase">Ad Soyad</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-light border-end-0">
+                      <FontAwesomeIcon icon={faUser} className="text-muted" />
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control form-control-lg border-start-0"
+                      id="name"
+                      placeholder="Ad Soyad"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">E-posta</label>
-                  <input
-                    type="email"
-                    className="form-control form-control-lg"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
+                <div className="mb-4">
+                  <label htmlFor="email" className="form-label text-muted small text-uppercase">E-posta</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-light border-end-0">
+                      <FontAwesomeIcon icon={faEnvelope} className="text-muted" />
+                    </span>
+                    <input
+                      type="email"
+                      className="form-control form-control-lg border-start-0"
+                      id="email"
+                      placeholder="ornek@email.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Şifre</label>
-                  <input
-                    type="password"
-                    className="form-control form-control-lg"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
+                <div className="mb-4">
+                  <label htmlFor="password" className="form-label text-muted small text-uppercase">Şifre</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-light border-end-0">
+                      <FontAwesomeIcon icon={faLock} className="text-muted" />
+                    </span>
+                    <input
+                      type="password"
+                      className="form-control form-control-lg border-start-0"
+                      id="password"
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="confirmPassword" className="form-label">Şifre Tekrar</label>
-                  <input
-                    type="password"
-                    className="form-control form-control-lg"
-                    id="confirmPassword"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                  />
+                <div className="mb-4">
+                  <label htmlFor="confirmPassword" className="form-label text-muted small text-uppercase">Şifre Tekrar</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-light border-end-0">
+                      <FontAwesomeIcon icon={faLock} className="text-muted" />
+                    </span>
+                    <input
+                      type="password"
+                      className="form-control form-control-lg border-start-0"
+                      id="confirmPassword"
+                      placeholder="••••••••"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
-                <button type="submit" className="btn btn-primary btn-lg w-100">
+                <button type="submit" className="btn btn-primary btn-lg w-100 mb-4">
+                  <FontAwesomeIcon icon={faUserPlus} className="me-2" />
                   Kayıt Ol
                 </button>
+                <p className="text-center text-muted">
+                  Zaten hesabınız var mı? <Link to="/login" className="text-primary">Giriş Yapın</Link>
+                </p>
               </form>
             </div>
           </div>

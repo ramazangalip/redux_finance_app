@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { loginStart, loginSuccess, loginFailure } from '../store/slices/authSlice';
 import { authAPI } from '../services/api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLock, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login: React.FC = () => {
@@ -27,36 +29,55 @@ const Login: React.FC = () => {
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card shadow-sm">
-            <div className="card-body">
-              <h2 className="text-center mb-4">Giriş Yap</h2>
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">E-posta</label>
-                  <input
-                    type="email"
-                    className="form-control form-control-lg"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
+        <div className="col-md-5">
+          <div className="card shadow-sm border-0 fade-in">
+            <div className="card-body p-5">
+              <div className="text-center mb-5">
+                <h2 className="fw-bold text-primary mb-2">Finans Takip</h2>
+                <p className="text-muted">Hesabınıza giriş yapın</p>
+              </div>
+              <form onSubmit={handleSubmit} className="slide-up">
+                <div className="mb-4">
+                  <label htmlFor="email" className="form-label text-muted small text-uppercase">E-posta</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-light border-end-0">
+                      <FontAwesomeIcon icon={faEnvelope} className="text-muted" />
+                    </span>
+                    <input
+                      type="email"
+                      className="form-control form-control-lg border-start-0"
+                      id="email"
+                      placeholder="ornek@email.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Şifre</label>
-                  <input
-                    type="password"
-                    className="form-control form-control-lg"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
+                <div className="mb-4">
+                  <label htmlFor="password" className="form-label text-muted small text-uppercase">Şifre</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-light border-end-0">
+                      <FontAwesomeIcon icon={faLock} className="text-muted" />
+                    </span>
+                    <input
+                      type="password"
+                      className="form-control form-control-lg border-start-0"
+                      id="password"
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
-                <button type="submit" className="btn btn-primary btn-lg w-100">
+                <button type="submit" className="btn btn-primary btn-lg w-100 mb-4">
+                  <FontAwesomeIcon icon={faSignInAlt} className="me-2" />
                   Giriş Yap
                 </button>
+                <p className="text-center text-muted">
+                  Hesabınız yok mu? <Link to="/register" className="text-primary">Kayıt Olun</Link>
+                </p>
               </form>
             </div>
           </div>
